@@ -1,0 +1,29 @@
+module Attributes exports (
+    Attribute,
+    id,
+    disabled,
+    on_click,
+);
+
+import (js-unknown) Unknown (
+    Unknown,
+);
+
+
+type Attribute(event);
+
+id = fn (value: String): Attribute(event) -> mk_prop_impl("id", value);
+
+disabled = fn (value: Bool): Attribute(event) -> mk_prop_impl(
+    "disabled",
+    value,
+);
+
+on_click = fn (event: event): Attribute(event) -> mk_event_handler_impl(
+    "click",
+    fn (_ev) -> event,
+);
+
+foreign mk_prop_impl: (String, value) -> Attribute(event);
+
+foreign mk_event_handler_impl: (String, (Unknown) -> event) -> Attribute(event);

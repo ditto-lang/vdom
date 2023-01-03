@@ -1,0 +1,11 @@
+# Generated ditto stuff
+.ditto
+dist
+packages
+
+# NPM stuff
+node_modules
+package-lock.json
+
+# npm run gen-d-ts
+decls

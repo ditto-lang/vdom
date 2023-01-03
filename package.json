@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "pretype-check": "ditto make",
+    "type-check": "tsc --noEmit",
+    "pretest": "ditto make",
+    "test": "node ./test.js",
+    "posttest": "npm run --ignore-scripts type-check",
+    "gen-d-ts": "tsc --allowJs --declaration --emitDeclarationOnly --outDir decls --removeComments ditto-src/*.js"
+  },
+  "devDependencies": {
+    "@tsconfig/strictest": "1.0.2",
+    "prettier": "2.8.1",
+    "typescript": "4.9.4"
+  },
+  "dependencies": {
+    "snabbdom": "^3.5.1"
+  }
+}

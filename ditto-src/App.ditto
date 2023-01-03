@@ -1,0 +1,58 @@
+module App exports (
+    main,
+    get_element_by_id,
+    View,
+    Update,
+    Args,
+);
+
+import (std) Effect (
+    VoidEffect,
+);
+import (std) Maybe (
+    Maybe(..),
+);
+
+import HTML (
+    HTML,
+);
+
+
+type alias Args(state, event) = {
+    container: Element,
+    initial_state: state,
+    view: View(state, event),
+    update: Update(state, event),
+};
+
+type alias View(state, event) = (state) -> HTML(event);
+
+type alias Update(state, event) = (state, event) -> state;
+
+main = fn (args: Args(state, event)): VoidEffect -> main_impl(
+    args.initial_state,
+    args.container,
+    args.view,
+    args.update,
+);
+
+get_element_by_id = fn (id: String) -> get_element_by_id_impl(
+    id,
+    Just,
+    Nothing,
+);
+
+foreign main_impl: (
+    state,
+    Element,
+    (state) -> HTML(event),
+    (state, event) -> state,
+) -> Effect(Unit);
+
+type Element;
+
+foreign get_element_by_id_impl: (
+    String,
+    (Element) -> Maybe(Element),
+    Maybe(Element),
+) -> Effect(Maybe(Element));

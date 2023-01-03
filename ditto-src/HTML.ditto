@@ -1,0 +1,39 @@
+module HTML exports (
+    HTML,
+    Attributes,
+    Children,
+    div,
+    button,
+    text,
+    node,
+);
+
+import Attributes (
+    Attribute,
+);
+
+
+type HTML(event);
+
+type alias Attributes(event) = Array(Attribute(event));
+
+type alias Children(event) = Array(HTML(event));
+
+div = fn (attrs: Attributes(event), children: Children(event)): HTML(event) ->
+    node("div", attrs, children);
+
+button = fn (attrs: Attributes(event), children: Children(event)): HTML(
+    event,
+) -> node("button", attrs, children);
+
+text = text_impl;
+
+node = fn (
+    tag: String,
+    attrs: Attributes(event),
+    children: Children(event),
+): HTML(event) -> node_impl(tag, attrs, children);
+
+foreign node_impl: (String, Attributes(event), Children(event)) -> HTML(event);
+
+foreign text_impl: (String) -> HTML(event);

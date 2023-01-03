@@ -1,0 +1,13 @@
+name = "vdom"
+targets = ["web", "nodejs"]
+dependencies = ["std", "js-unknown"]
+
+[package-set.packages.std]
+github = { owner = "ditto-lang", repo = "std" }
+revision = "2b6ba19a726530f43c63a770c1742056b01a5fbf"
+sha256 = "dc6c3ddd4ac794a67bdd304d73b414be68e5f6d734f24a9bd0a7b4d133f4e864"
+
+[package-set.packages.js-unknown]
+github = { owner = "ditto-lang", repo = "js-unknown" }
+revision = "6ba2891b9161a5bb0a852b79fed26a1a024b3ee6"
+sha256 = "aff210753b3280a5dcd377af413191be077ca63d5d42e385f99850ed5cccfa83"
