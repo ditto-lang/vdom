@@ -2,51 +2,48 @@ module App exports (
     Element,
     Next,
     mount,
-);
+)
 
 import (js-task) Task (
     Task,
-);
+)
 
-import (std) Effect (
-    VoidEffect,
-);
 import (std) Maybe (
     Maybe(..),
-);
+)
 import (std) Never (
     Never,
-);
+)
 import (std) Result (
     Result(..),
-);
+)
 
 import Html (
     Html,
-);
+)
 
 
-type Element;
+type Element
 
 type alias Next(state, event) = { 
     state: state,
     task: Maybe(Task(event, Never)),
-};
+}
 
 type alias Args(state, event) = {
     container: Element,
     initial_state: state,
     view: (state) -> Html(event),
     update: (state, event) -> Next(state, event),
-};
+}
 
-mount = fn (args: Args(state, event)): VoidEffect -> mount_impl(
+mount = fn (args: Args(state, event)): Effect(Unit) -> mount_impl(
     args.initial_state,
     args.container,
     args.view,
     fn (state, event, cb) ->
         let
-            next = args.update(state, event);
+            next = args.update(state, event)
         in
         match next.task with
         | Nothing -> do {
@@ -64,11 +61,11 @@ mount = fn (args: Args(state, event)): VoidEffect -> mount_impl(
             return next.state
         }
         end,
-);
+)
 
 foreign mount_impl: (
     state,
     Element,
     (state) -> Html(event),
-    (state, event, (event) -> VoidEffect) -> Effect(state),
-) -> Effect(Unit);
+    (state, event, (event) -> Effect(Unit)) -> Effect(state),
+) -> Effect(Unit)

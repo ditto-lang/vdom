@@ -15,73 +15,70 @@ module Events exports (
     on_key_down,
     on_key_press,
     on_key_up,
-);
+)
 
 import Attributes (
     Attribute,
-);
+)
 
 
-on_click = fn (event: event): Attribute(event) -> on_impl("click", event);
+on_click = fn (event: event): Attribute(event) -> on_impl("click", event)
 
 on_double_click = fn (event: event): Attribute(event) -> on_impl(
     "dblclick",
     event,
-);
+)
 
 on_mouse_down = fn (event: event): Attribute(event) -> on_impl(
     "mousedown",
     event,
-);
+)
 
-on_mouse_up = fn (event: event): Attribute(event) -> on_impl("mouseup", event);
+on_mouse_up = fn (event: event): Attribute(event) -> on_impl("mouseup", event)
 
 on_mouse_enter = fn (event: event): Attribute(event) -> on_impl(
     "mouseenter",
     event,
-);
+)
 
 on_mouse_leave = fn (event: event): Attribute(event) -> on_impl(
     "mouseleave",
     event,
-);
+)
 
 on_mouse_over = fn (event: event): Attribute(event) -> on_impl(
     "mouseover",
     event,
-);
+)
 
-on_mouse_out = fn (event: event): Attribute(event) -> on_impl(
-    "mouseout",
-    event,
-);
+on_mouse_out = fn (event: event): Attribute(event) -> on_impl("mouseout", event)
 
-on_input = on_input_impl;
+on_input = on_input_impl
 
-on_check = on_check_impl;
+on_check = on_check_impl
 
-on_submit = on_submit_impl;
+on_submit = on_submit_impl
 
-on_blur = fn (event: event): Attribute(event) -> on_impl("blur", event);
+on_blur = fn (event: event): Attribute(event) -> on_impl("blur", event)
 
-on_focus = fn (event: event): Attribute(event) -> on_impl("focus", event);
+on_focus = fn (event: event): Attribute(event) -> on_impl("focus", event)
 
-on_key_down = on_key_down_impl;
+on_key_down = on_key_down_impl
 
-on_key_press = on_key_press_impl;
+on_key_press = on_key_press_impl
 
-on_key_up = on_key_up_impl;
+on_key_up = on_key_up_impl
 
-foreign on_impl: (String, event) -> Attribute(event);
+foreign on_impl: (String, event) -> Attribute(event)
 
-foreign on_input_impl: ((String) -> event) -> Attribute(event);
+foreign on_input_impl: ((String) -> event) -> Attribute(event)
 
-foreign on_check_impl: ((Bool) -> event) -> Attribute(event);
+foreign on_check_impl: ((Bool) -> event) -> Attribute(event)
 
-foreign on_submit_impl: (event) -> Attribute(event);
+foreign on_submit_impl: (event) -> Attribute(event)
 
-foreign on_key_down_impl: ((String) -> event) -> Attribute(event);
+foreign on_key_down_impl: ((String) -> event) -> Attribute(event)
 
-foreign on_key_press_impl: ((String) -> event) -> Attribute(event);
+foreign on_key_press_impl: ((String) -> event) -> Attribute(event)
 
-foreign on_key_up_impl: ((String) -> event) -> Attribute(event);
+foreign on_key_up_impl: ((String) -> event) -> Attribute(event)
