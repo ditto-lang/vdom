@@ -1,0 +1,15 @@
+// Vitest Snapshot v1
+
+exports[`clicking the buttons 1`] = `
+<div>
+  <div>
+    <button>
+      -
+    </button>
+    2
+    <button>
+      +
+    </button>
+  </div>
+</div>
+`;

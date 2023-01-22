@@ -6,4 +6,4 @@ includes = ["*.ditto"]
 [formatter.prettier]
 command = "npx"
 options = ["prettier", "--write"]
-includes = ["*.js", "*.json", "*.md", "*.yaml"]
+includes = ["*.js", "*.ts", "*.html", "*.json", "*.md", "*.yaml"]

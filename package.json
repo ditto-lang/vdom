@@ -5,19 +5,19 @@
     "packages/*"
   ],
   "scripts": {
-    "pretype-check": "ditto make",
     "type-check": "tsc --noEmit",
-    "pretest": "ditto make",
-    "test": "node ./test.js",
-    "posttest": "npm run --ignore-scripts type-check",
-    "gen-d-ts": "tsc --allowJs --declaration --emitDeclarationOnly --outDir decls --removeComments ditto-src/*.js"
-  },
-  "devDependencies": {
-    "@tsconfig/strictest": "1.0.2",
-    "prettier": "2.8.1",
-    "typescript": "4.9.4"
+    "test": "vitest"
   },
   "dependencies": {
     "snabbdom": "^3.5.1"
+  },
+  "devDependencies": {
+    "@tsconfig/strictest": "1.0.2",
+    "jsdom": "^21.1.0",
+    "prettier": "2.8.1",
+    "typescript": "4.9.4",
+    "@testing-library/dom": "^8.20.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "vitest": "^0.27.3"
   }
 }
