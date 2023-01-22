@@ -1,5 +1,5 @@
 import {
-  init,
+  init as initPatch,
   fragment,
   propsModule,
   classModule,
@@ -9,25 +9,26 @@ import {
 /**
  * @template S
  * @template E
- * @param {S}  initialState
+ * @param {(cb: (event: E) => () => void) => () => S } init
  * @param {Parameters<Patch>[0]} container
  * @param {(state: S) => import("./Html").Html<E>} view
  * @param {(state: S, event: E, cb: (event: E) => () => void) => () => S} update
  * @returns {() => void}
  */
-export function mount_impl(initialState, container, view, update) {
+export function mount_impl(init, container, view, update) {
   return () => {
     const bus = document.appendChild(document.createComment("vdom-event-bus"));
     const emit = (/** @type {E} */ event) => {
       return bus.dispatchEvent(new CustomEvent("bus-event", { detail: event }));
     };
-    const patch = init(
+    const patch = initPatch(
       [propsModule, classModule, eventListenersModule],
       undefined,
       {
         experimental: { fragments: true },
       }
     );
+    const initialState = init((e) => () => emit(e))();
     const state = { value: initialState };
     const oldVnode = { value: fragment([view(state.value)(emit)]) };
     patch(container, oldVnode.value);

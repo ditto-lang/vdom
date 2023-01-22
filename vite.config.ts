@@ -6,6 +6,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         counter: resolve(__dirname, "examples/counter/index.html"),
+        ticker: resolve(__dirname, "examples/ticker/index.html"),
       },
     },
   },

@@ -32,13 +32,32 @@ type alias Next(state, event) = {
 
 type alias Args(state, event) = {
     container: Element,
-    initial_state: state,
+    init: () -> Next(state, event),
     view: (state) -> Html(event),
     update: (state, event) -> Next(state, event),
 }
 
 mount = fn (args: Args(state, event)): Effect(Unit) -> mount_impl(
-    args.initial_state,
+    fn (cb) ->
+        let
+            next = args.init()
+        in
+        match next.task with
+        | Nothing -> do {
+            return next.state
+        }
+        | Just(task) -> do {
+            Task.fork(
+                task,
+                fn (result) ->
+                    match result with
+                    | Ok(event) -> cb(event)
+                    | Err(nah) -> Never.unreachable(nah)
+                    end,
+            );
+            return next.state
+        }
+        end,
     args.container,
     args.view,
     fn (state, event, cb) ->
@@ -64,7 +83,7 @@ mount = fn (args: Args(state, event)): Effect(Unit) -> mount_impl(
 )
 
 foreign mount_impl: (
-    state,
+    ((event) -> Effect(Unit)) -> Effect(state),
     Element,
     (state) -> Html(event),
     (state, event, (event) -> Effect(Unit)) -> Effect(state),

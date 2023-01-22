@@ -1,11 +1,11 @@
-import { getByText, within } from "@testing-library/dom";
-import { main } from "../dist/Example_Counter";
+import { within } from "@testing-library/dom";
+import { main as Counter } from "../dist/Example_Counter";
 
 function renderCounter() {
   const root = document.createElement("div");
   const container = document.createElement("div");
   root.appendChild(container);
-  main(container)();
+  Counter(container)();
   return root;
 }
 
