@@ -1,5 +1,4 @@
 module App exports (
-    Element,
     Next,
     mount,
 )
@@ -18,12 +17,13 @@ import (std) Result (
     Result(..),
 )
 
+import Element (
+    Element,
+)
 import Html (
     Html,
 )
 
-
-type Element
 
 type alias Next(state, event) = { 
     state: state,

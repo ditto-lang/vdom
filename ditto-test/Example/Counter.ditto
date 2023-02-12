@@ -8,11 +8,14 @@ import (std) Maybe (
 )
 
 import App
+import Element (
+    Element,
+)
 import Events
 import Html
 
 
-main = fn (container: App.Element): Effect(Unit) -> App.mount(
+main = fn (container: Element): Effect(Unit) -> App.mount(
     {
         container = container,
         init = fn () -> {state = initial_state, task = Nothing },
