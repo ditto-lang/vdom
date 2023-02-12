@@ -37,10 +37,9 @@ initial_state: State = { ticks = 0 }
 
 type alias Html = Html.Html(Event)
 
-view = fn (state: State): Html -> Html.div(
-    [],
-    [Html.text(Int.to_string(state.ticks))],
-)
+view = fn (state: State): Array(Html) -> [
+    Html.div([], [Html.text(Int.to_string(state.ticks))]),
+]
 
 type Event = Tick
 

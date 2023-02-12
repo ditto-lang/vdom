@@ -13,7 +13,7 @@ import {
  * @template E
  * @param {(cb: (event: E) => () => void) => () => S } init
  * @param {Parameters<Patch>[0]} container
- * @param {(state: S) => import("./Html").Html<E>} view
+ * @param {(state: S) => import("./Html").Html<E>[]} view
  * @param {(state: S, event: E, cb: (event: E) => () => void) => () => S} update
  * @returns {() => void}
  */
@@ -34,13 +34,13 @@ export function mount_impl(init, container, view, update) {
     );
     const initialState = init(emitEffect)();
     const state = { value: initialState };
-    const oldVnode = { value: fragment([view(state.value)(emit)]) };
-    patch(container, oldVnode.value);
+    const htmls = view(state.value).map((html) => html(emit));
+    const oldVnode = { value: patch(container, fragment(htmls)) };
 
     emitter.on(EVENT_NAME, (event) => {
       state.value = update(state.value, event, emitEffect)();
-      const vnode = fragment([view(state.value)(emit)]);
-      oldVnode.value = patch(oldVnode.value, vnode);
+      const htmls = view(state.value).map((html) => html(emit));
+      oldVnode.value = patch(oldVnode.value, fragment(htmls));
     });
   };
 }

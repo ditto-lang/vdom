@@ -30,14 +30,16 @@ initial_state: State = { count = 0 }
 
 type alias Html = Html.Html(Event)
 
-view = fn (state: State): Html -> Html.div(
-    [],
-    [
-        Html.button([Events.on_click(Decrement)], [Html.text("-")]),
-        Html.text(Int.to_string(state.count)),
-        Html.button([Events.on_click(Increment)], [Html.text("+")]),
-    ],
-)
+view = fn (state: State): Array(Html) -> [
+    Html.div(
+        [],
+        [
+            Html.button([Events.on_click(Decrement)], [Html.text("-")]),
+            Html.text(Int.to_string(state.count)),
+            Html.button([Events.on_click(Increment)], [Html.text("+")]),
+        ],
+    ),
+]
 
 type Event =
     | Increment

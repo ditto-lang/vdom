@@ -30,22 +30,24 @@ initial_state: State = { is_mounted = false, should_render = false }
 
 type alias Html = Html.Html(Event)
 
-view = fn (state: State): Html -> Html.div(
-    [],
-    [
-        Html.button([Events.on_click(Toggle)], [Html.text("toggle")]),
-        if state.should_render then
-            Html.div(
-                [
-                    Events.on_mount(fn (_) -> Mounted),
-                    Events.on_unmount(Unmounted),
-                ],
-                [Html.text("boo")],
-            )
-        else
-            Html.empty,
-    ],
-)
+view = fn (state: State): Array(Html) -> [
+    Html.div(
+        [],
+        [
+            Html.button([Events.on_click(Toggle)], [Html.text("toggle")]),
+            if state.should_render then
+                Html.div(
+                    [
+                        Events.on_mount(fn (_) -> Mounted),
+                        Events.on_unmount(Unmounted),
+                    ],
+                    [Html.text("boo")],
+                )
+            else
+                Html.empty,
+        ],
+    ),
+]
 
 type Event =
     | Toggle

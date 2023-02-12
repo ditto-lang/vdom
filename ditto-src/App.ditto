@@ -33,7 +33,7 @@ type alias Next(state, event) = {
 type alias Args(state, event) = {
     container: Element,
     init: () -> Next(state, event),
-    view: (state) -> Html(event),
+    view: (state) -> Array(Html(event)),
     update: (state, event) -> Next(state, event),
 }
 
@@ -85,6 +85,6 @@ mount = fn (args: Args(state, event)): Effect(Unit) -> mount_impl(
 foreign mount_impl: (
     ((event) -> Effect(Unit)) -> Effect(state),
     Element,
-    (state) -> Html(event),
+    (state) -> Array(Html(event)),
     (state, event, (event) -> Effect(Unit)) -> Effect(state),
 ) -> Effect(Unit)
