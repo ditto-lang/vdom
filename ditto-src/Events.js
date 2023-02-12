@@ -119,3 +119,36 @@ export function on_key_up_impl(mkEvent) {
     },
   ];
 }
+
+/**
+ * @template  E
+ * @param {(elm: NonNullable<import("snabbdom").VNode["elm"]>) => E} mkEvent
+ * @returns {import("./Attributes").Hook<E>}
+ */
+export function on_mount_impl(mkEvent) {
+  return [
+    "hook",
+    "insert",
+    (vnode, handler) => {
+      if (vnode.elm !== undefined) {
+        const event = mkEvent(vnode.elm);
+        handler(event);
+      }
+    },
+  ];
+}
+
+/**
+ * @template  E
+ * @param {E} event
+ * @returns {import("./Attributes").Hook<E>}
+ */
+export function on_unmount_impl(event) {
+  return [
+    "hook",
+    "destroy",
+    (_vnode, handler) => {
+      handler(event);
+    },
+  ];
+}

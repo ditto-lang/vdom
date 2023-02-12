@@ -8,4 +8,5 @@ url = "https://raw.githubusercontent.com/ditto-lang/package-sets/63709a6d571b512
 sha256 = "9009d6a4d00224226455dec41a653bb2e04d67a341e41c2c43e2716f62243f43"
 
 [codegen-js.package-json.dependencies]
-snabbdom = "^3.5.1"
+emittery = "1.0.1"
+snabbdom = "3.5.1"

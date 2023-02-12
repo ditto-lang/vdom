@@ -32,13 +32,21 @@ export function map_impl(attr, f) {
       (ev, handler) => value(ev, (event) => handler(f(event))),
     ];
   }
+  if (attr[0] === "hook") {
+    const [_, hook, value] = attr;
+    return [
+      "hook",
+      hook,
+      (vnode, handler) => value(vnode, (event) => handler(f(event))),
+    ];
+  }
   return attr;
 }
 
 /**
  * @template E
  * @template {keyof HTMLElementEventMap} K
- * @typedef {Prop | Classes | EventHandler<E, K>} Attribute
+ * @typedef {Prop | Classes | EventHandler<E, K> | Hook<E>} Attribute
  */
 
 /**
@@ -53,6 +61,11 @@ export function map_impl(attr, f) {
  * @template E
  * @template {keyof HTMLElementEventMap} K
  * @typedef {readonly [t: "on", event: K, value: (ev: HTMLElementEventMap[K], handler: Handler<E>) => void]} EventHandler
+ */
+
+/**
+ * @template E
+ * @typedef {readonly [t: "hook", hook: "insert" | "destroy", value: (vnode: import("snabbdom").VNode, handler: Handler<E>) => void]} Hook
  */
 
 /**

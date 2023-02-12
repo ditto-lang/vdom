@@ -1,4 +1,4 @@
-import { within } from "@testing-library/dom";
+import { within, waitFor } from "@testing-library/dom";
 import { main as Counter } from "../dist/Example_Counter";
 
 function renderCounter() {
@@ -19,6 +19,9 @@ test("clicking the buttons", async () => {
   increment();
   increment();
   decrement();
+  await waitFor(() => {
+    within(container).getByText("2");
+  });
 
   expect(container).toMatchSnapshot();
 });

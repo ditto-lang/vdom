@@ -10,8 +10,12 @@ import { h } from "snabbdom";
  */
 export function node_impl(sel, attributes, children) {
   return (handler) => {
-    /** @type {{ props: import("snabbdom").Props, on: import("snabbdom").On, class: import("snabbdom").Classes }} */
-    const data = { props: {}, on: {}, class: {} };
+    /** @type {{
+      props: import("snabbdom").Props,
+      on: import("snabbdom").On,
+      class: import("snabbdom").Classes,
+      hook: import("snabbdom").Hooks }} */
+    const data = { props: {}, on: {}, class: {}, hook: {} };
 
     for (const attribute of attributes) {
       if (attribute[0] === "on") {
@@ -28,7 +32,17 @@ export function node_impl(sel, attributes, children) {
         for (const className of attribute[1]) {
           data["class"][className] = true;
         }
-      } else {
+      } else if (attribute[0] === "hook") {
+        const [_, hook, value] = attribute;
+        /**
+         * @param {import("snabbdom").VNode} vnode
+         * @returns {void}
+         */
+        const listener = (vnode) => {
+          value(vnode, handler);
+        };
+        data["hook"][hook] = listener;
+      } else if (attribute[0] === "props") {
         const [_, key, value] = attribute;
         data["props"][key] = value;
       }

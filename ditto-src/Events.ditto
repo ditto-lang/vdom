@@ -15,10 +15,15 @@ module Events exports (
     on_key_down,
     on_key_press,
     on_key_up,
+    on_mount,
+    on_unmount,
 )
 
 import Attributes (
     Attribute,
+)
+import Element (
+    Element,
 )
 
 
@@ -69,6 +74,10 @@ on_key_press = on_key_press_impl
 
 on_key_up = on_key_up_impl
 
+on_mount = on_mount_impl
+
+on_unmount = on_unmount_impl
+
 foreign on_impl: (String, event) -> Attribute(event)
 
 foreign on_input_impl: ((String) -> event) -> Attribute(event)
@@ -82,3 +91,7 @@ foreign on_key_down_impl: ((String) -> event) -> Attribute(event)
 foreign on_key_press_impl: ((String) -> event) -> Attribute(event)
 
 foreign on_key_up_impl: ((String) -> event) -> Attribute(event)
+
+foreign on_mount_impl: ((Element) -> event) -> Attribute(event)
+
+foreign on_unmount_impl: (event) -> Attribute(event)

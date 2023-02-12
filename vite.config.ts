@@ -7,6 +7,7 @@ export default defineConfig({
       input: {
         counter: resolve(__dirname, "examples/counter/index.html"),
         ticker: resolve(__dirname, "examples/ticker/index.html"),
+        hooks: resolve(__dirname, "examples/hooks/index.html"),
       },
     },
   },

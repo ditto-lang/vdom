@@ -1,3 +1,4 @@
+import Emittery from "emittery";
 import {
   init as initPatch,
   fragment,
@@ -17,17 +18,12 @@ import {
  */
 export function mount_impl(init, container, view, update) {
   return () => {
-    const bus = document.appendChild(document.createComment("vdom-event-bus"));
-    const emit = (/** @type {E} */ event) => {
-      return new Promise((resolve) => {
-        resolve(
-          bus.dispatchEvent(new CustomEvent("bus-event", { detail: event }))
-        );
-      });
-    };
-    const emitEffect = (/** @type {E} */ event) => () => {
-      emit(event);
-    };
+    const EVENT_NAME = "ditto-event";
+
+    const emitter = new Emittery();
+    const emit = (/** @type {E} */ event) => emitter.emit(EVENT_NAME, event);
+    const emitEffect = (/** @type {E} */ event) => () => emit(event);
+
     const patch = initPatch(
       [propsModule, classModule, eventListenersModule],
       undefined,
@@ -39,13 +35,11 @@ export function mount_impl(init, container, view, update) {
     const state = { value: initialState };
     const oldVnode = { value: fragment([view(state.value)(emit)]) };
     patch(container, oldVnode.value);
-    bus.addEventListener("bus-event", (event) => {
-      if (event instanceof CustomEvent) {
-        state.value = update(state.value, event.detail, emitEffect)();
-        const vnode = fragment([view(state.value)(emit)]);
-        patch(oldVnode.value, vnode);
-        oldVnode.value = vnode;
-      }
+
+    emitter.on(EVENT_NAME, (event) => {
+      state.value = update(state.value, event, emitEffect)();
+      const vnode = fragment([view(state.value)(emit)]);
+      oldVnode.value = patch(oldVnode.value, vnode);
     });
   };
 }
