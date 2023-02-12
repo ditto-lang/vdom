@@ -19,12 +19,6 @@ import {
  */
 export function mount_impl(init, container, view, update) {
   return () => {
-    const EVENT_NAME = "ditto-event";
-
-    const emitter = new Emittery();
-    const emit = (/** @type {E} */ event) => emitter.emit(EVENT_NAME, event);
-    const emitEffect = (/** @type {E} */ event) => () => emit(event);
-
     const patch = initPatch(
       [attributesModule, propsModule, classModule, eventListenersModule],
       undefined,
@@ -32,16 +26,24 @@ export function mount_impl(init, container, view, update) {
         experimental: { fragments: true },
       }
     );
-    const initialState = init(emitEffect)();
-    const state = { value: initialState };
-    const htmls = view(state.value).map((html) => html(emit));
-    const oldVnode = { value: patch(container, fragment(htmls)) };
+
+    const EVENT_NAME = "ditto-event";
+    const emitter = new Emittery({
+      // debug: { name: "ditto", enabled: true },
+    });
+    const emit = (/** @type {E} */ event) => emitter.emit(EVENT_NAME, event);
+    const emitEffect = (/** @type {E} */ event) => () => emit(event);
 
     emitter.on(EVENT_NAME, (event) => {
       state.value = update(state.value, event, emitEffect)();
       const htmls = view(state.value).map((html) => html(emit));
       oldVnode.value = patch(oldVnode.value, fragment(htmls));
     });
+
+    const initialState = init(emitEffect)();
+    const state = { value: initialState };
+    const htmls = view(state.value).map((html) => html(emit));
+    const oldVnode = { value: patch(container, fragment(htmls)) };
   };
 }
 
