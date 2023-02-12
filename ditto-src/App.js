@@ -2,6 +2,7 @@ import Emittery from "emittery";
 import {
   init as initPatch,
   fragment,
+  attributesModule,
   propsModule,
   classModule,
   eventListenersModule,
@@ -25,7 +26,7 @@ export function mount_impl(init, container, view, update) {
     const emitEffect = (/** @type {E} */ event) => () => emit(event);
 
     const patch = initPatch(
-      [propsModule, classModule, eventListenersModule],
+      [attributesModule, propsModule, classModule, eventListenersModule],
       undefined,
       {
         experimental: { fragments: true },

@@ -1,5 +1,14 @@
 /**
  * @param {string} key
+ * @param {string} value
+ * @returns {Attr}
+ */
+export function attr_impl(key, value) {
+  return ["attrs", key, value];
+}
+
+/**
+ * @param {string} key
  * @param {any} value
  * @returns {Prop}
  */
@@ -46,7 +55,11 @@ export function map_impl(attr, f) {
 /**
  * @template E
  * @template {keyof HTMLElementEventMap} K
- * @typedef {Prop | Classes | EventHandler<E, K> | Hook<E>} Attribute
+ * @typedef {Attr | Prop | Classes | EventHandler<E, K> | Hook<E>} Attribute
+ */
+
+/**
+ * @typedef {readonly [t: "attrs", key: string, value: any]} Attr
  */
 
 /**

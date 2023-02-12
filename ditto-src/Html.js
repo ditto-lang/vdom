@@ -11,13 +11,33 @@ import { h } from "snabbdom";
 export function node_impl(sel, attributes, children) {
   return (handler) => {
     /** @type {{
+      attrs: import("snabbdom").Attrs,
       props: import("snabbdom").Props,
       on: import("snabbdom").On,
       class: import("snabbdom").Classes,
       hook: import("snabbdom").Hooks }} */
-    const data = { props: {}, on: {}, class: {}, hook: {} };
+    const data = { attrs: {}, props: {}, on: {}, class: {}, hook: {} };
 
     for (const attribute of attributes) {
+      if (attribute[0] === "attrs") {
+        const [_, key, value] = attribute;
+        data["attrs"][key] = value;
+        continue;
+      }
+
+      if (attribute[0] === "props") {
+        const [_, key, value] = attribute;
+        data["props"][key] = value;
+        continue;
+      }
+
+      if (attribute[0] === "classes") {
+        for (const className of attribute[1]) {
+          data["class"][className] = true;
+        }
+        continue;
+      }
+
       if (attribute[0] === "on") {
         const [_, event, value] = attribute;
         /**
@@ -28,11 +48,10 @@ export function node_impl(sel, attributes, children) {
           value(ev, handler);
         };
         data["on"][/** @type {string} */ (event)] = listener;
-      } else if (attribute[0] === "classes") {
-        for (const className of attribute[1]) {
-          data["class"][className] = true;
-        }
-      } else if (attribute[0] === "hook") {
+        continue;
+      }
+
+      if (attribute[0] === "hook") {
         const [_, hook, value] = attribute;
         /**
          * @param {import("snabbdom").VNode} vnode
@@ -42,11 +61,10 @@ export function node_impl(sel, attributes, children) {
           value(vnode, handler);
         };
         data["hook"][hook] = listener;
-      } else if (attribute[0] === "props") {
-        const [_, key, value] = attribute;
-        data["props"][key] = value;
+        continue;
       }
     }
+
     return h(
       sel,
       data,

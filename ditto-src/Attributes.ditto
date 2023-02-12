@@ -91,33 +91,33 @@ map = map_impl
 
 classes = fn (value: Array(String)): Attribute(event) -> classes_impl(value)
 
-id = fn (value: String): Attribute(event) -> prop_impl("id", value)
+id = fn (value: String): Attribute(event) -> attr_impl("id", value)
 
-title = fn (value: String): Attribute(event) -> prop_impl("title", value)
+title = fn (value: String): Attribute(event) -> attr_impl("title", value)
 
 hidden = fn (value: Bool): Attribute(event) -> prop_impl("hidden", value)
 
-type_ = fn (value: String): Attribute(event) -> prop_impl("type", value)
+type_ = fn (value: String): Attribute(event) -> attr_impl("type", value)
 
-value = fn (value: String): Attribute(event) -> prop_impl("value", value)
+value = fn (value: String): Attribute(event) -> attr_impl("value", value)
 
 checked = fn (value: Bool): Attribute(event) -> prop_impl("checked", value)
 
-placeholder = fn (value: String): Attribute(event) -> prop_impl(
+placeholder = fn (value: String): Attribute(event) -> attr_impl(
     "placeholder",
     value,
 )
 
 selected = fn (value: Bool): Attribute(event) -> prop_impl("selected", value)
 
-accept = fn (value: String): Attribute(event) -> prop_impl("accept", value)
+accept = fn (value: String): Attribute(event) -> attr_impl("accept", value)
 
-acceptCharset = fn (value: String): Attribute(event) -> prop_impl(
-    "acceptCharset",
+acceptCharset = fn (value: String): Attribute(event) -> attr_impl(
+    "accept-charset",
     value,
 )
 
-action = fn (value: String): Attribute(event) -> prop_impl("action", value)
+action = fn (value: String): Attribute(event) -> attr_impl("action", value)
 
 autocomplete = fn (value: Bool): Attribute(event) -> prop_impl(
     "autocomplete",
@@ -128,26 +128,26 @@ autofocus = fn (value: Bool): Attribute(event) -> prop_impl("autofocus", value)
 
 disabled = fn (value: Bool): Attribute(event) -> prop_impl("disabled", value)
 
-enctype = fn (value: String): Attribute(event) -> prop_impl("enctype", value)
+enctype = fn (value: String): Attribute(event) -> attr_impl("enctype", value)
 
-list = fn (value: String): Attribute(event) -> prop_impl("list", value)
+list = fn (value: String): Attribute(event) -> attr_impl("list", value)
 
 maxlength = fn (value: Int): Attribute(event) -> prop_impl("maxlength", value)
 
 minlength = fn (value: Int): Attribute(event) -> prop_impl("minlength", value)
 
-method = fn (value: String): Attribute(event) -> prop_impl("method", value)
+method = fn (value: String): Attribute(event) -> attr_impl("method", value)
 
 multiple = fn (value: Bool): Attribute(event) -> prop_impl("multiple", value)
 
-name = fn (value: String): Attribute(event) -> prop_impl("name", value)
+name = fn (value: String): Attribute(event) -> attr_impl("name", value)
 
 novalidate = fn (value: Bool): Attribute(event) -> prop_impl(
     "novalidate",
     value,
 )
 
-pattern = fn (value: String): Attribute(event) -> prop_impl("pattern", value)
+pattern = fn (value: String): Attribute(event) -> attr_impl("pattern", value)
 
 readonly = fn (value: Bool): Attribute(event) -> prop_impl("readonly", value)
 
@@ -155,51 +155,51 @@ required = fn (value: Bool): Attribute(event) -> prop_impl("required", value)
 
 size = fn (value: Int): Attribute(event) -> prop_impl("size", value)
 
-for = fn (value: String): Attribute(event) -> prop_impl("htmlFor", value)
+for = fn (value: String): Attribute(event) -> attr_impl("htmlFor", value)
 
-form = fn (value: String): Attribute(event) -> prop_impl("form", value)
+form = fn (value: String): Attribute(event) -> attr_impl("form", value)
 
-max = fn (value: String): Attribute(event) -> prop_impl("max", value)
+max = fn (value: String): Attribute(event) -> attr_impl("max", value)
 
-min = fn (value: String): Attribute(event) -> prop_impl("min", value)
+min = fn (value: String): Attribute(event) -> attr_impl("min", value)
 
-step = fn (value: String): Attribute(event) -> prop_impl("step", value)
+step = fn (value: String): Attribute(event) -> attr_impl("step", value)
 
 cols = fn (value: Int): Attribute(event) -> prop_impl("cols", value)
 
 rows = fn (value: Int): Attribute(event) -> prop_impl("rows", value)
 
-wrap = fn (value: String): Attribute(event) -> prop_impl("wrap", value)
+wrap = fn (value: String): Attribute(event) -> attr_impl("wrap", value)
 
-href = fn (value: String): Attribute(event) -> prop_impl("href", value)
+href = fn (value: String): Attribute(event) -> attr_impl("href", value)
 
-target = fn (value: String): Attribute(event) -> prop_impl("target", value)
+target = fn (value: String): Attribute(event) -> attr_impl("target", value)
 
-download = fn (value: String): Attribute(event) -> prop_impl("download", value)
+download = fn (value: String): Attribute(event) -> attr_impl("download", value)
 
-hreflang = fn (value: String): Attribute(event) -> prop_impl("hreflang", value)
+hreflang = fn (value: String): Attribute(event) -> attr_impl("hreflang", value)
 
-media = fn (value: String): Attribute(event) -> prop_impl("media", value)
+media = fn (value: String): Attribute(event) -> attr_impl("media", value)
 
-ping = fn (value: String): Attribute(event) -> prop_impl("ping", value)
+ping = fn (value: String): Attribute(event) -> attr_impl("ping", value)
 
-rel = fn (value: String): Attribute(event) -> prop_impl("rel", value)
+rel = fn (value: String): Attribute(event) -> attr_impl("rel", value)
 
 ismap = fn (value: Bool): Attribute(event) -> prop_impl("ismap", value)
 
-usemap = fn (value: String): Attribute(event) -> prop_impl("usemap", value)
+usemap = fn (value: String): Attribute(event) -> attr_impl("usemap", value)
 
-shape = fn (value: String): Attribute(event) -> prop_impl("shape", value)
+shape = fn (value: String): Attribute(event) -> attr_impl("shape", value)
 
-coords = fn (value: String): Attribute(event) -> prop_impl("coords", value)
+coords = fn (value: String): Attribute(event) -> attr_impl("coords", value)
 
-src = fn (value: String): Attribute(event) -> prop_impl("src", value)
+src = fn (value: String): Attribute(event) -> attr_impl("src", value)
 
 height = fn (value: Int): Attribute(event) -> prop_impl("height", value)
 
 width = fn (value: Int): Attribute(event) -> prop_impl("width", value)
 
-alt = fn (value: String): Attribute(event) -> prop_impl("alt", value)
+alt = fn (value: String): Attribute(event) -> attr_impl("alt", value)
 
 autoplay = fn (value: Bool): Attribute(event) -> prop_impl("autoplay", value)
 
@@ -207,35 +207,35 @@ controls = fn (value: Bool): Attribute(event) -> prop_impl("controls", value)
 
 loop = fn (value: Bool): Attribute(event) -> prop_impl("loop", value)
 
-preload = fn (value: String): Attribute(event) -> prop_impl("preload", value)
+preload = fn (value: String): Attribute(event) -> attr_impl("preload", value)
 
-poster = fn (value: String): Attribute(event) -> prop_impl("poster", value)
+poster = fn (value: String): Attribute(event) -> attr_impl("poster", value)
 
 default = fn (value: Bool): Attribute(event) -> prop_impl("default", value)
 
-kind = fn (value: String): Attribute(event) -> prop_impl("kind", value)
+kind = fn (value: String): Attribute(event) -> attr_impl("kind", value)
 
-srclang = fn (value: String): Attribute(event) -> prop_impl("srclang", value)
+srclang = fn (value: String): Attribute(event) -> attr_impl("srclang", value)
 
-sandbox = fn (value: String): Attribute(event) -> prop_impl("sandbox", value)
+sandbox = fn (value: String): Attribute(event) -> attr_impl("sandbox", value)
 
-srcdoc = fn (value: String): Attribute(event) -> prop_impl("srcdoc", value)
+srcdoc = fn (value: String): Attribute(event) -> attr_impl("srcdoc", value)
 
 reversed = fn (value: Bool): Attribute(event) -> prop_impl("reversed", value)
 
 start = fn (value: Int): Attribute(event) -> prop_impl("start", value)
 
-align = fn (value: String): Attribute(event) -> prop_impl("align", value)
+align = fn (value: String): Attribute(event) -> attr_impl("align", value)
 
 colspan = fn (value: Int): Attribute(event) -> prop_impl("colspan", value)
 
 rowspan = fn (value: Int): Attribute(event) -> prop_impl("rowspan", value)
 
-headers = fn (value: String): Attribute(event) -> prop_impl("headers", value)
+headers = fn (value: String): Attribute(event) -> attr_impl("headers", value)
 
-scope = fn (value: String): Attribute(event) -> prop_impl("scope", value)
+scope = fn (value: String): Attribute(event) -> attr_impl("scope", value)
 
-accesskey = fn (value: String): Attribute(event) -> prop_impl(
+accesskey = fn (value: String): Attribute(event) -> attr_impl(
     "accesskey",
     value,
 )
@@ -245,23 +245,23 @@ contenteditable = fn (value: Bool): Attribute(event) -> prop_impl(
     value,
 )
 
-contextmenu = fn (value: String): Attribute(event) -> prop_impl(
+contextmenu = fn (value: String): Attribute(event) -> attr_impl(
     "contextmenu",
     value,
 )
 
-dir = fn (value: String): Attribute(event) -> prop_impl("dir", value)
+dir = fn (value: String): Attribute(event) -> attr_impl("dir", value)
 
-draggable = fn (value: String): Attribute(event) -> prop_impl(
+draggable = fn (value: String): Attribute(event) -> attr_impl(
     "draggable",
     value,
 )
 
-dropzone = fn (value: String): Attribute(event) -> prop_impl("dropzone", value)
+dropzone = fn (value: String): Attribute(event) -> attr_impl("dropzone", value)
 
-itemprop = fn (value: String): Attribute(event) -> prop_impl("itemprop", value)
+itemprop = fn (value: String): Attribute(event) -> attr_impl("itemprop", value)
 
-lang = fn (value: String): Attribute(event) -> prop_impl("lang", value)
+lang = fn (value: String): Attribute(event) -> attr_impl("lang", value)
 
 spellcheck = fn (value: Bool): Attribute(event) -> prop_impl(
     "spellcheck",
@@ -270,13 +270,15 @@ spellcheck = fn (value: Bool): Attribute(event) -> prop_impl(
 
 tabindex = fn (value: Int): Attribute(event) -> prop_impl("tabindex", value)
 
-cite = fn (value: String): Attribute(event) -> prop_impl("cite", value)
+cite = fn (value: String): Attribute(event) -> attr_impl("cite", value)
 
-datetime = fn (value: String): Attribute(event) -> prop_impl("datetime", value)
+datetime = fn (value: String): Attribute(event) -> attr_impl("datetime", value)
 
-pubdate = fn (value: String): Attribute(event) -> prop_impl("pubdate", value)
+pubdate = fn (value: String): Attribute(event) -> attr_impl("pubdate", value)
 
-manifest = fn (value: String): Attribute(event) -> prop_impl("manifest", value)
+manifest = fn (value: String): Attribute(event) -> attr_impl("manifest", value)
+
+foreign attr_impl: (String, String) -> Attribute(event)
 
 foreign prop_impl: (String, value) -> Attribute(event)
 
