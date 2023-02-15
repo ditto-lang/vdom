@@ -101,5 +101,5 @@ export function map_impl(html, f) {
  * @template E
  * @callback Html
  * @param {import("./Attributes").Handler<E>} handler
- * @returns {import("snabbdom").VNodeChildElement}
+ * @returns {import("snabbdom").VNode | string}
  */

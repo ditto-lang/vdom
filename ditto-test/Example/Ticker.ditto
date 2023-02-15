@@ -25,7 +25,7 @@ import Html
 main = fn (container: Element): Effect(Unit) -> App.mount(
     {
         container = container,
-        init = fn () -> {state = initial_state, task = Just(tick) },
+        init = fn () -> { state = initial_state, task = Just(tick) },
         view = view,
         update = update,
     },
@@ -37,9 +37,7 @@ initial_state: State = { ticks = 0 }
 
 type alias Html = Html.Html(Event)
 
-view = fn (state: State): Array(Html) -> [
-    Html.div([], [Html.text(Int.to_string(state.ticks))]),
-]
+view = fn (state: State): Array(Html) -> [Html.text(Int.to_string(state.ticks))]
 
 type Event = Tick
 

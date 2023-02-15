@@ -25,7 +25,7 @@ import Html (
 )
 
 
-type alias Next(state, event) = { 
+type alias Next(state, event) = {
     state: state,
     task: Maybe(Task(event, Never)),
 }

@@ -18,7 +18,7 @@ import Html
 main = fn (container: Element): Effect(Unit) -> App.mount(
     {
         container = container,
-        init = fn () -> {state = initial_state, task = Nothing },
+        init = fn () -> { state = initial_state, task = Nothing },
         view = view,
         update = update,
     },
@@ -31,14 +31,9 @@ initial_state: State = { count = 0 }
 type alias Html = Html.Html(Event)
 
 view = fn (state: State): Array(Html) -> [
-    Html.div(
-        [],
-        [
-            Html.button([Events.on_click(Decrement)], [Html.text("-")]),
-            Html.text(Int.to_string(state.count)),
-            Html.button([Events.on_click(Increment)], [Html.text("+")]),
-        ],
-    ),
+    Html.button([Events.on_click(Decrement)], [Html.text("-")]),
+    Html.text(Int.to_string(state.count)),
+    Html.button([Events.on_click(Increment)], [Html.text("+")]),
 ]
 
 type Event =
@@ -53,8 +48,10 @@ update = fn (state: State, event: Event): Next ->
         state = { state | count = Int.add(state.count, 1) },
         task = Nothing,
     }
+    -- FIXME dodgey formatting
     | Decrement -> {
-        state = { state | count = Int.subtract(state.count, 1) },
+        state = {
+            state | count = Int.subtract(state.count, 1) },
         task = Nothing,
     }
     end
