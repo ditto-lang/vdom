@@ -51,7 +51,10 @@ type alias Next = App.Next(State, Event)
 update = fn (state: State, event: Event): Next ->
     match event with
     | Toggle -> {
-        state = { state | should_render = Bool.not(state.should_render) },
+        state = {
+            state |
+                should_render = Bool.not(state.should_render),
+        },
         task = Nothing,
     }
     | Mounted -> { state = { state | is_mounted = true }, task = Nothing }

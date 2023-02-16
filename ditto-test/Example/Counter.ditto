@@ -48,10 +48,11 @@ update = fn (state: State, event: Event): Next ->
         state = { state | count = Int.add(state.count, 1) },
         task = Nothing,
     }
-    -- FIXME dodgey formatting
     | Decrement -> {
         state = {
-            state | count = Int.subtract(state.count, 1) },
+            state |
+                count = Int.subtract(state.count, 1),
+        },
         task = Nothing,
     }
     end
